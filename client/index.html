@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz App</h1>
+        <div id="quiz-setup">
+            <form id="quiz-form">
+                <label for="topic">Enter Topic:</label>
+                <input type="text" id="topic" name="topic" required>
+                <label for="difficulty">Select Difficulty:</label>
+                <select id="difficulty" name="difficulty" required>
+                    <option value="easy">Easy</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="hard">Hard</option>
+                </select>
+                <button type="submit">Start Quiz</button>
+            </form>
+        </div>
+        <div id="quiz-container" class="hidden">
+            <div id="question-container"></div>
+            <div id="score-container">
+                <p>Score: <span id="score">0</span></p>
+                <button id="next-question" class="hidden">Next Question</button>
+            </div>
+        </div>
+        <div id="result-container" class="hidden">
+            <p id="result-message"></p>
+            <button id="new-topic">New Topic</button>
+            <button id="same-topic">Keep Playing</button>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
