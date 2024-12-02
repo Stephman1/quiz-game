@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Client code for quiz game web application, which connects to the server that retrieves quiz questions from the OpenAI API.",
   "scripts": {
-    "start-server": "http-server"
+    "start": "http-server"
   },
   "repository": {
     "type": "git",

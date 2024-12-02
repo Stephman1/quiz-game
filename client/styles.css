@@ -47,3 +47,10 @@ button:hover {
 .hidden {
     display: none;
 }
+
+.loading-message {
+    text-align: center;
+    font-weight: bold;
+    color: #007BFF;
+    margin-top: 20px;
+}
