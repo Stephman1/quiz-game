@@ -81,11 +81,23 @@ function showResult() {
     resultContainer.classList.remove("hidden");
 
     let message = `You scored ${score} out of 10. Well done! `;
+    
     if (score > 8) {
-        difficulty = difficulty === "hard" ? "hard" : "intermediate";
+        // Increase difficulty
+        if (difficulty === "easy") {
+            difficulty = "intermediate";
+        } else if (difficulty === "intermediate") {
+            difficulty = "hard";
+        }
     } else if (score < 5) {
-        difficulty = difficulty === "easy" ? "easy" : "intermediate";
+        // Decrease difficulty
+        if (difficulty === "hard") {
+            difficulty = "intermediate";
+        } else if (difficulty === "intermediate") {
+            difficulty = "easy";
+        }
     }
+
     resultMessage.textContent = message;
 }
 
