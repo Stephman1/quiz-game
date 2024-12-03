@@ -70,5 +70,6 @@ button:hover {
     text-align: center;
     font-weight: bold;
     color: #ffa500;
-    margin-top: 20px;
+    margin-top: 20px; /* Adds space between the container and the loading message */
+    width: 100%;
 }

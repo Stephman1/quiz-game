@@ -15,29 +15,35 @@ const resultMessage = document.getElementById("result-message");
 const newTopicBtn = document.getElementById("new-topic");
 const sameTopicBtn = document.getElementById("same-topic");
 const scoreDisplay = document.getElementById("score");
-const loadingMessage = document.createElement("div");
+const loadingMessage = document.getElementById("loading-message");
 
-loadingMessage.classList.add("loading-message");
-loadingMessage.textContent = "Loading questions...";
 
 quizForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     topic = document.getElementById("topic").value.trim();
     difficulty = document.getElementById("difficulty").value;
 
-    showLoading();
-    const response = await fetch(`${apiUrl}${encodeURIComponent(topic)}/${difficulty}`);
-    currentQuestions = await response.json();
-    hideLoading();
-    
-    currentQuestionIndex = 0;
-    score = 0;
-    scoreDisplay.textContent = score;
+    try {
+        showLoading();
+        const response = await fetch(`${apiUrl}${encodeURIComponent(topic)}/${difficulty}`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch quiz questions.");
+        }
+        currentQuestions = await response.json();
+        hideLoading();
 
-    quizForm.parentElement.classList.add("hidden");
-    quizContainer.classList.remove("hidden");
+        currentQuestionIndex = 0;
+        score = 0;
+        scoreDisplay.textContent = score;
 
-    displayQuestion();
+        quizForm.parentElement.classList.add("hidden");
+        quizContainer.classList.remove("hidden");
+
+        displayQuestion();
+    } catch (error) {
+        hideLoading();
+        alert("Error: " + error.message);
+    }
 });
 
 function displayQuestion() {
@@ -139,17 +145,11 @@ sameTopicBtn.addEventListener("click", async () => {
 });
 
 function showLoading() {
-    if (!document.body.contains(loadingMessage)) {
-        document.body.appendChild(loadingMessage);
-    }
-    loadingMessage.style.display = "block";
+    loadingMessage.classList.remove("hidden");
 }
 
 function hideLoading() {
-    if (document.body.contains(loadingMessage)) {
-        loadingMessage.style.display = "none";
-        document.body.removeChild(loadingMessage);
-    }
+    loadingMessage.classList.add("hidden");
 }
 
 function escapeHTML(html) {
