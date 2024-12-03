@@ -2,11 +2,13 @@
 
 ## Introduction
 
-A quiz game hosted on a web application that retrieves questions from the OpenAI API. The user can request questions on any topic and receives a score out of ten.
+A quiz game hosted on a web application that retrieves questions from the OpenAI API. The user can request questions on any topic and receives a score out of ten. Demo video available on [YouTube](https://youtu.be/GKX8hZIvZTY).
 
 ## Server
 
-You first need to ensure that the server is running because this is where the API calls will be made to the OpenAI API. If needed install node.js at https://nodejs.org/en/download/package-manager. Then follow the below instructions to run the server:
+You first need to enter your OpenAI API key into the config file in `server/config.json`.
+
+You need to ensure that the server is running because this is where the API calls will be made to the OpenAI API. If needed install node.js at https://nodejs.org/en/download/package-manager. Then follow the below instructions to run the server:
 
 ```
 cd server
