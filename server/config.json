@@ -1,0 +1,5 @@
+{
+	"openai_api_key": "insert-openai-api-key-here",
+	"server_host": "localhost",
+	"server_port": "9000"
+}
