@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
     <div class="container">
@@ -16,6 +16,7 @@
                 <input type="text" id="topic" name="topic" required>
                 <label for="difficulty">Select Difficulty:</label>
                 <select id="difficulty" name="difficulty" required>
+                    <option value="none" selected disabled hidden> Select Difficulty</option>
                     <option value="easy">Easy</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="hard">Hard</option>
@@ -23,6 +24,7 @@
                 <button type="submit">Start Quiz</button>
             </form>
         </div>
+        <div class="loading-message hidden" id="loading-message">Loading questions...</div>
         <div id="quiz-container" class="hidden">
             <div id="question-container"></div>
             <div id="score-container">

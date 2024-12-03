@@ -25,7 +25,7 @@ cd client
 
 npm install
 
-npm run start-server
+npm start
 ```
 
 The client server should be run on `http://127.0.0.1:8080` by default, but if not the URL should be indicated in the `Available on` section.
