@@ -47,6 +47,7 @@ function displayQuestion() {
         ${questionObj.answers
             .map((answer, index) => `<button class="answer" data-index="${index}">${escapeHTML(answer)}</button>`)
             .join("")}
+        <div id="feedback" class="hidden"></div>
     `;
     document.querySelectorAll(".answer").forEach((btn) =>
         btn.addEventListener("click", handleAnswerClick)
@@ -55,15 +56,30 @@ function displayQuestion() {
 
 function handleAnswerClick(e) {
     const selectedAnswer = parseInt(e.target.dataset.index);
-    const correctAnswer = currentQuestions.questions[currentQuestionIndex].correctAnswer;
+    const questionObj = currentQuestions.questions[currentQuestionIndex];
+    const correctAnswerIndex = currentQuestions.questions[currentQuestionIndex].correctAnswer;
+    const feedback = document.getElementById("feedback");
 
-    if (selectedAnswer === correctAnswer) {
+    // Disable buttons
+    document.querySelectorAll(".answer").forEach((btn, index) => {
+        btn.disabled = true;
+        if (index === correctAnswerIndex) {
+            btn.style.backgroundColor = "#00563E"; // Correct answer
+            btn.style.color = "white";
+        }
+    });
+
+    // Update score and feedback message
+    if (selectedAnswer === correctAnswerIndex) {
         score++;
+        feedback.textContent = "Yes, you got it right!";
+    } else {
+        feedback.textContent = `Not quite! The correct answer is "${escapeHTML(questionObj.answers[correctAnswerIndex])}".`;
     }
 
+    feedback.classList.remove("hidden");
     scoreDisplay.textContent = score;
     nextQuestionBtn.classList.remove("hidden");
-    document.querySelectorAll(".answer").forEach((btn) => (btn.disabled = true));
 }
 
 nextQuestionBtn.addEventListener("click", () => {
@@ -73,7 +89,7 @@ nextQuestionBtn.addEventListener("click", () => {
     } else {
         showResult();
     }
-    nextQuestionBtn.classList.add("hidden");
+    nextQuestionBtn.classList.add("hidden"); // Hide the button for the next question
 });
 
 function showResult() {
